@@ -23,7 +23,7 @@ const App = () => {
         return;
       }
       // Call API
-      const response = await axios.post("http://localhost:4000/bfhl", parsedJson);
+      const response = await axios.post("https://bajaj-backend-2-cboo.onrender.com/bfhl", parsedJson);
       console.log(response);
       setResponseData(response.data);
       setDropdownOptions([]);
