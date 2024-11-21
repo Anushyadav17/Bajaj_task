@@ -5,7 +5,6 @@ const App = () => {
   const [jsonInput, setJsonInput] = useState("");
   const [error, setError] = useState("");
   const [responseData, setResponseData] = useState(null);
-  const [dropdownOptions, setDropdownOptions] = useState([]);
   const [filteredData, setFilteredData] = useState("Numbers");
 
   // Handle JSON Input
@@ -26,7 +25,6 @@ const App = () => {
       const response = await axios.post("https://bajaj-backend-2-cboo.onrender.com/bfhl", parsedJson);
       console.log(response);
       setResponseData(response.data);
-      setDropdownOptions([]);
       setFilteredData(null);
     } catch (err) {
       setError("Invalid JSON or server error.");
