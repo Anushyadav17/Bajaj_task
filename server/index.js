@@ -6,6 +6,18 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
+const cookiePaser = require("cookie-parser");
+const cors = require("cors");
+
+app.use(express.json());
+app.use(cookiePaser());
+app.use(
+    cors({
+        origin : "http://localhost:3000",
+        credentials : true,
+    })
+)
+
 const isPrime = (num) => {
   if (num < 2) return false;
   for (let i = 2, sqrt = Math.sqrt(num); i <= sqrt; i++) {
