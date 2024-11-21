@@ -6,6 +6,7 @@ const App = () => {
   const [error, setError] = useState("");
   const [responseData, setResponseData] = useState(null);
   const [filteredData, setFilteredData] = useState("Numbers");
+  const [loading, setLoading] = useState(false);
 
   // Handle JSON Input
   const handleInputChange = (e) => {
@@ -16,6 +17,7 @@ const App = () => {
   // Validate and Submit JSON
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const parsedJson = JSON.parse(jsonInput); // Validate JSON
       if (!parsedJson || !Array.isArray(parsedJson.data)) {
         setError("Invalid JSON. Ensure 'data' is an array.");
@@ -26,8 +28,10 @@ const App = () => {
       console.log(response);
       setResponseData(response.data);
       setFilteredData(null);
+      setLoading(false);
     } catch (err) {
       setError("Invalid JSON or server error.");
+      setLoading(false);
     }
   };
 
@@ -64,6 +68,9 @@ const App = () => {
       <br />
       <button onClick={handleSubmit}>Submit</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {
+        loading ? (<p style={{ fontSize: "50px" }}>loading........</p>) : (<p></p>)
+      }
 
       {/* Dropdown and Response Rendering */}
       {responseData && (
